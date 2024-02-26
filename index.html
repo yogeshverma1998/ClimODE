@@ -52,7 +52,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">ClimODE: Climate Forecasting With Physics-informed Neural ODEs</h1>
+            <h1 class="title is-1 publication-title">ClimODE: Climate and Weather Forecasting With Physics-informed Neural ODEs</h1>
             <div class="is-size-5 publication-authors">
               <h6 style="font-size:30px;"><span style="color: #ff0000">Oral (Top 1%)</span>, ICLR 2024 </h6>
           
@@ -149,7 +149,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Climate prediction traditionally relies on complex numerical simulations of atmospheric physics. Deep learning approaches, such as transformers, have recently challenged the simulation paradigm with complex network forecasts. However, they often act as data-driven black-box models that neglect the underlying physics and lack uncertainty quantification. We address these limitations with ClimODE, a spatiotemporal continuous-time process that implements a key principle of advection from statistical mechanics, namely, weather changes due to a spatial movement of quantities over time. ClimODE models precise weather evolution with value-conserving dynamics, learning global weather transport as a neural flow, which also enables estimating the uncertainty in predictions. Our approach outperforms existing data-driven methods in global and regional forecasting with an order of magnitude smaller parameterization, establishing a new state of the art.
+            Climate and weather prediction traditionally relies on complex numerical simulations of atmospheric physics. Deep learning approaches, such as transformers, have recently challenged the simulation paradigm with complex network forecasts. However, they often act as data-driven black-box models that neglect the underlying physics and lack uncertainty quantification. We address these limitations with ClimODE, a spatiotemporal continuous-time process that implements a key principle of advection from statistical mechanics, namely, weather changes due to a spatial movement of quantities over time. ClimODE models precise weather evolution with value-conserving dynamics, learning global weather transport as a neural flow, which also enables estimating the uncertainty in predictions. Our approach outperforms existing data-driven methods in global and regional forecasting with an order of magnitude smaller parameterization, establishing a new state of the art.
           </p>
         </div>
       </div>
@@ -235,6 +235,15 @@
           <b> Global Forecasting </b>: RMSE and ACC comparison with baselines.
         </h2>
       </div>
+        
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/crps_average.png" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          <b> CRPS and Monthly Forecasting </b>: RMSE comparison with baselines for monthly forecasting and CRPS scores for ClimODE. 
+        </h2>
+      </div>
+        
       <div class="item">
         <!-- Your image here -->
         <img src="static/images/ablation_final_v2.png" alt="MY ALT TEXT"/>
@@ -254,31 +263,55 @@
 </div>
 </section>
 
-  
 
-<!-- Video carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Ablations and Interpretabilitys</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/mean_std_tp_v1.png" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+        <b> Effect of Emission Model </b>: Explainable bias and uncertainty quantification
+       </h2>
+     </div>
+        
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/ablation_final_v2.png" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          <b> Individual Components </b>: Importance of individual model components
+        </h2>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Video carousel 
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">Another Carousel</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
+          <video poster="" id="video1" autoplay controls muted loop height="100%">  -->
+            <!-- Your video file here 
             <source src="static/videos/carousel1.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
+          <video poster="" id="video2" autoplay controls muted loop height="100%">-->
+            <!-- Your video file here 
             <source src="static/videos/carousel2.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\-->
+            <!-- Your video file here 
             <source src="static/videos/carousel3.mp4"
             type="video/mp4">
           </video>
@@ -286,7 +319,7 @@
       </div>
     </div>
   </div>
-</section>
+</section>-->
 <!-- End video carousel -->
 
 
@@ -313,7 +346,14 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@inproceedings{
+verma2024climode,
+title={Clim{ODE}: Climate Forecasting With Physics-informed Neural {ODE}s},
+author={Yogesh Verma and Markus Heinonen and Vikas Garg},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=xuY33XhEGR}
+}</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
