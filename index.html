@@ -847,14 +847,41 @@
               <p>
                 <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
                 <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
-                The plot shows model predictions $u (x,t)$ of ground temperature (\texttt{t2m}) for a specific location while also including emission bias $\mu (x,t)$ and variance $\sigma^2 (x,t)$. Remarkably, the model captures diurnal variations and effectively estimates variance.
+                The right plot shows model predictions $u (x,t)$ of ground temperature (\texttt{t2m}) for a specific location while also including emission bias $\mu (x,t)$ and variance $\sigma^2 (x,t)$. Remarkably, the model captures <font color="red"> diurnal variations and effectively estimates variance </font>. 
               </p>
+
+              <p>
+                <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
+                <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
+                The bottom plot highlights bias and variance on a global scale. <font color="orange"> Positive bias is evident around the Pacific ocean </font> , corresponding to daytime, while a negative bias prevails around Europe and Africa, signifying nighttime. The  <font color="blue"> uncertainties indicate confidence </font>  in ocean estimation, with northern land regions being challenging.
+              </p>
+              
             </div>
             <div class="column is-1"></div>
             <div class="column is-5 has-text-centered">
               <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/mean_bias_showcase_final_v3.png" alt="Agreement Score" class="img-center">
             </div>
+            <p align="center">
+                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/mean_std_tp_v1.png" />
+              </p>
+            
           </div>
+
+        <h3 class="title is-4">Effect of individual components</h3>
+         
+          <div class="columns is-centered is-vcentered">
+
+            <div class="content has-text-justified">
+              We analyze the contributions of various model components to its performance.The below plot delineates the impact of components: <font color="blue"> NODE</font> is a free-form second-order neural ODE, <font color="orange"> NODE</font> corresponds to the advection ODE form, <font color="green"> NODE</font> adds the attention in addition to convolutions, and <font color="red"> ClimNODE</font> adds also the emission component.
+              <p align="center">
+                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/ablation_final_v2.png" />
+              </p>
+              
+            </div>
+            
+          </div>
+        
+        
 
           <h3 class="title is-4" id="results-iwilds">Additional results and analysis</h3>
           
