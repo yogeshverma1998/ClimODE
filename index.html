@@ -810,58 +810,36 @@
             </div>
             
             <!-- <div class="column is-0.1"></div> -->
-           
 
+            <h3 class="title is-4">CRPS Scores and Monthly Forecasting</h3>
+         
+          <div class="columns is-centered is-vcentered">
+
+            <div class="content has-text-justified">
+              We also evaluated our model using CRPS (Continuous Ranked Probability Score) and Globaly monthly forecasting to forecast monthly averages of quantities, shown below. It can be seen our model can predict the weather quite well with predicted variance and bias outperform FCN in monthly forecasting. 
+              <p align="center">
+                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/crps_average.png" />
+              </p>
+              
+            </div>
+            
           </div>
+
+
+          <h2 class="title is-3" id="results">Ablations</h2>
+
+
+          <h3 class="title is-4" id="results-waterbirds">Effect of emission model</h3>
 
           <div class="columns is-centered is-vcentered">
             <div class="column is-6 has-text-justified">
               <p>
-                <b>Performance of <span class="gap-text">Guided Adversarial Prompts</span> against amount of generated data.</b> 
-                The figure on the right shows the performance of our method on the defocus blur distribution shift over the amount of generated data added. 
-                Using <span class="gp-text">Guided Prompts</span> or <span class="gap-text">Guided Adversarial Prompts</span> results in a large improvement in performance, 
-                compared to <span class="ap-text">Adversarial Prompts</span> or the baseline with as little as 10 extra data points. 
-                This suggests that the guidance loss successfully guided the generations towards producing training data relevant to the distribution shift.
+                The plot shows model predictions $ u (x,t) $ of ground temperature (\texttt{t2m}) for a specific location while also including emission bias $\mu(x,t)$ and variance $\sigma^2(x,t)$. Remarkably, the model captures diurnal variations and effectively estimates variance.
               </p>
             </div>
             <div class="column is-1"></div>
             <div class="column is-5 has-text-centered">
-              <img src="https://storage.googleapis.com/adversarial-prompts/images/depth-quant-blur.png" alt="Agreement Score" class="img-center">
-              <p class="has-text-justified gray">
-                <em style="color: gray;">
-                  x-axis: the amount of extra data generated.
-                  y-axis: <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 118.3%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c2113"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ℓ</mi><mn>1</mn></msub></math></mjx-assistive-mml></mjx-container> errors <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="2" style="font-size: 118.3%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mo>×</mo><mn>100</mn><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container> under defocus blur corruption applied on the Taskonomy test set.
-                </em>
-              </p>
-            </div>
-          </div>
-
-
-
-
-          <h3 class="title is-4" id="results-waterbirds">Waterbirds: Avoiding Spurious Correlation</h3>
-
-          <div class="columns is-centered is-vcentered">
-            <div class="column is-6 has-text-justified">
-              <p>
-                <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
-                <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
-                <b><span class="gap-text">Guided Adversarial Prompts</span> improve the data-efficiency over other methods</b>.
-                We observe that having a guidance mechanism towards the target image distribution consistently improves on top of the <span class="agnostic-text">Agnostic Prompts</span> baseline (<em>''nature''</em> prompt).
-                <span class="ap-text">Adversarial Prompts</span> while fooling the model, generates images that are not necessary relevant to the target distribution and, thus, not useful to adapt the model to it.
-                Combining both mechanisms in <span class="gap-text">Guided Adversarial Prompts</span> leads to <em>improved data efficiency</em>.
-                Unlike <span class="gp-text">Guided Prompts</span> that uses the same prompts to generate images for both classes, <span class="gap-text">GAP</span> finds prompts that generate images the model fails on, this leads to generation of waterbirds on land and landbirds on water, the combinations not present in the original training data, which are necessary data samples for the model to learn the bird predictive feature.
-              </p>
-            </div>
-            <div class="column is-1"></div>
-            <div class="column is-5 has-text-centered">
-              <img src="https://storage.googleapis.com/adversarial-prompts/images/waterbirds_quant.png" alt="Agreement Score" class="img-center">
-              <p class="has-text-justified gray">
-                <em style="color: gray;">
-                  x-axis: the amount of extra data generated.
-                  y-axis: the accuracy on the balanced test set (both waterbirds and landbirds on both land and water).
-                </em>
-              </p>
+              <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/mean_bias_showcase_final_v3.png" alt="Agreement Score" class="img-center">
             </div>
           </div>
 
