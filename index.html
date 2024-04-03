@@ -162,7 +162,7 @@
 
           <div class="tile is-parent">
             <a href="#method-overview" class="tile is-child box">
-              <p class="title is-4">Method Overview</p>
+              <p class="title is-4">Method</p>
               <p>
                 How do we model weather/climate via advection?
               </p>
@@ -378,15 +378,45 @@
           <br>
 
 
-          <h2 class="title is-3" id="visualizations">Visualizations: <span class="ap-text">Adversarial Prompts</span></h2>
+          <h2 class="title is-3" id="visualizations">Visualizations: <span class="ap-text">Weather Forecasting</span></h2>
           <!-- <h2 class="title is-4 ap-text has-text-centered">Adversarial Prompts</h2> -->
           
-          <h2 class="title is-5">Taskonomy Depth Estimation</h2>
+          <h2 class="title is-5">Global Forecasting</h2>
           <div class="content has-text-justified">
             <p>
-              <span class="ap-text">Adversarial Prompts</span> find new styles that fool a given supervised model. Below, you can explore different adversarial prompts for depth estimation model trained on the Taskonomy dataset.
+              Below are the global prediction videos for various metrological variables predicted by ClimODE.  
             </p>
           </div>
+
+        <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">  -->
+            Your video file here 
+            <source src="static/videos/carousel1.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">-->
+            Your video file here 
+            <source src="static/videos/carousel2.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\-->
+            Your video file here 
+            <source src="static/videos/carousel3.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+            
 
           <div class="bboxprobing-panel">
             <div class="columns is-mobile">
@@ -847,17 +877,13 @@
               <p>
                 <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
                 <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
-                The right plot shows model predictions $$u (x,t)$$ of ground temperature ($$\texttt{t2m}$$) for a specific location while also including emission bias $$\mu (x,t)$$ and variance $$\sigma^2 (x,t)$$. Remarkably, the model captures <font color="red"> diurnal variations and effectively estimates variance </font>. 
+                The right plot shows model predictions $u(x,t)$ of ground temperature ($\texttt{t2m}$) for a specific location while also including emission bias $\mu$ and variance $\sigma$. Remarkably, the model captures <font color="red"> diurnal variations and effectively estimates variance </font>. 
               </p>
 
               <p>
                 <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
                 <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
                 The bottom plot highlights bias and variance on a global scale. <font color="orange"> Positive bias is evident around the Pacific ocean </font> , corresponding to daytime, while a negative bias prevails around Europe and Africa, signifying nighttime. The  <font color="blue"> uncertainties indicate confidence </font>  in ocean estimation, with northern land regions being challenging.
-              </p>
-
-              <p align="center">
-                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/mean_std_tp_v1.png" />
               </p>
               
             </div>
@@ -868,6 +894,11 @@
             
             
           </div>
+
+        <p align="center">
+                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/mean_std_tp_v1.png" />
+        </p>
+        
 
         <h3 class="title is-4">Effect of individual components</h3>
          
