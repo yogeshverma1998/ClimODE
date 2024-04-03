@@ -198,6 +198,838 @@
 <!-- End paper abstract -->
 
 
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column is-full-width">
+          <h2 class="title is-3" id="method-overview">Method Overview</h2>
+
+          <div class="hero-body">
+            <div class="field has-addons is-pulled-right" id="play-controls" title="Hint: Right click the video and choose 'Show All Controls' to enable more fine-grained video controls.">
+              <p class="control">
+                <button class="button is-small is-rounded" onclick="playPauseVideo('method')">
+                  <span class="icon is-small">
+                    &nbsp;<svg class="svg-inline--fa fa-play fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg><!-- <i class="fa fa-play"></i> Font Awesome fontawesome.com -->&nbsp;<svg class="svg-inline--fa fa-pause fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="pause" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path></svg><!-- <i class="fa fa-pause"></i> Font Awesome fontawesome.com -->&nbsp;
+                  </span>
+                </button>
+              </p>
+              <p class="control">
+                <button class="button is-small is-rounded" onclick="restartVideo('method')">
+                  <span class="icon is-small">
+                    <svg class="svg-inline--fa fa-redo fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z"></path></svg><!-- <i class="fas fa-redo"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Restart animation</span>
+                </button>
+              </p>
+            </div>
+          </div>
+          <div class="hero-body has-text-centered">
+            <video id="method" height="100%" width="80%" preload="metadata" title="Hint: Right click the video and choose 'Show All Controls' to enable more fine-grained video controls.">
+              <source src="https://storage.googleapis.com/adversarial-prompts/images/diff-dataset-method.mp4#t=0.1" type="video/mp4">
+            </video>
+            <h3 class="subtitle has-text-justified">
+              <b>Our method consists of two feedback mechanisms.</b>
+              Our first model-aware feedback mechanism finds <span class="ap-text">Adversarial Prompts</span> that produce training exampples by maximizing the supervised loss.
+              Our second target distribution-aware feedback mechanism finds prompts that produce training examples similar to a target distribution.
+              We use CLIP to measure the similarity between the generated images and the target distribution.
+              Combining these two feedback mechanisms results in <span class="gap-text">Guided Adversarial Prompts</span>.
+            </h3>
+
+          </div>
+  
+          <div>
+            <div class="content has-text-justified">
+              <p>
+              </p>
+            </div>
+            
+            <!-- <h3 class="title is-4 ap-text">Adversarial Prompts</h3> -->
+            
+            <h2 class="title is-4 has-text-justified">Generating aligned image-label examples</h2>
+            <div class="content has-text-justified">
+              <p>
+                We need aligned examples for supervised training, where an aligned example is an RGB image and its label. 
+                We employ the follow two approaches.
+                <!-- We employ the following two approaches to condition the generative model g on the label y and sample-aligned training examples (x ̃, y).  -->
+                <!-- For the depth estimation task, we use the ControlNet model <a href="https://arxiv.org/abs/2302.05543">(Zhang L. et al.)</a> with depth conditioning. We use the depth maps from the training dataset. ControlNet then generates an RGB image conditioned on the given depth map. -->
+                <!-- which extends the conditioning mechanisms of the Stable Diffusion to accept various spatial modalities, e.g., depth, segmentation masks, or edges.  -->
+                <!-- Specifically, we use ControlNet v1.0 with depth conditioning1.  -->
+                <!-- For semantic classification tasks, we utilize the foreground object masks and use an in-painting technique proposed by <a href="https://arxiv.org/abs/2201.09865">Lugmayr A. et al.</a> that preserves the masked region throughout the denoising process, essentially keeping it intact.  -->
+                <!-- These mechanisms provide us with a generative model conditioned both on a text prompt and label.  -->
+                <!-- We denote the resulting distribution modeled by this generative model as g(y, c). -->
+              </p>
+            </div>
+
+            <div class="columns is-centered is-vcentered">
+              <div class="column is-5 has-text-centered">
+                <img src="https://storage.googleapis.com/adversarial-prompts/images/aligned-depth.png" alt="Agreement Score" class="img-center">
+                <p class="has-text-justified gray">
+                  <em style="color: gray;">
+                    For the depth estimation task, we use the ControlNet model <a href="https://arxiv.org/abs/2302.05543">(Zhang L. et al.)</a> with depth conditioning. We use the depth maps from the training dataset. ControlNet then generates an RGB image conditioned on the given depth map.
+                  </em>
+                </p>
+              </div>
+              <div class="column is-1"></div>
+              <div class="column is-5 has-text-centered">
+                <img src="https://storage.googleapis.com/adversarial-prompts/images/aligned-classification.png" alt="Agreement Score" class="img-center">
+                <p class="has-text-justified gray">
+                  <em style="color: gray;">
+                    For semantic classification tasks, we utilize the foreground object masks and use an in-painting technique proposed by <a href="https://arxiv.org/abs/2201.09865">Lugmayr A. et al.</a> that preserves the masked region throughout the denoising process, essentially keeping it intact. 
+                  </em>
+                </p>
+              </div>
+            </div>
+
+            <h2 class="title is-4 has-text-justified">Optimization Trajectory</h2>
+            <div class="content has-text-justified">
+              <p>
+                Below we demonstrate how <span class="ap-text">Adversarial Prompts</span> evolve over optimization steps for a model trained on the <a href="https://github.com/StanfordVL/taskonomy">Taskonomy dataset</a> for depth estimation task.
+                Note how further optimization steps destroy some of the details resulting in generations less faithful to the depth map.
+                To avoid training on such examples, we apply early stopping and SDEdit <a href="https://arxiv.org/abs/2108.01073">(Meng C. et al.)</a> image-to-image conditioning to generate training examples that are more faithful to the original label (see the paper for more details).
+              </p>
+            </div>
+
+
+            <div class="bboxprobing-panel">
+              <div class="columns is-mobile">
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-3 has-text-centered">
+                <div id="depth-iter-depth" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/gen-vs-iter/0/label/0.webp"></div>
+                <h2 class="subtitle">Depth Map</h2>
+              </div>
+              <div class="column is-3 has-text-centered">
+                <div id="depth-iter-orig-rgb" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/gen-vs-iter/0/original/0.webp"></div>
+                <h2 class="subtitle">Original RGB</h2>
+              </div>
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-3 has-text-centered">
+                <div id="depth-iter-generated" class="ap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/gen-vs-iter/0/generated/0.webp"></div>
+                  <h2 class="subtitle">Generated RGB<p class="ap-text"><em>(Adversarial Prompt)</em></p></h2>
+                </div>
+              </div>
+  
+              <div class="columns is-centered is-mobile is-vcentered">
+                <!-- <div class="column is-1 has-text-centered"></div> -->
+                <div class="column is-6 has-text-centered">
+                  <input class="slider is-fullwidth is-large is-info has-output" id="depth-iter-slider" step="1" min="0" max="24" value="0" type="range">
+                      
+                  <br>
+                  <button class="button" id="prev-button" onclick="prevDepthIterImage()">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
+                    </span>
+                    <span>Prev.</span>
+                  </button>
+                  <button class="button" id="next-button" onclick="nextDepthIterImage()">
+                  <span>Next</span>
+                  <span class="icon">
+                      <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  </button>
+                </div>
+                <!-- <div class="column is-1 has-text-centered"></div> -->
+              </div>
+    
+              <p style="text-align:center"><i>
+                Hint: Drag the slider to change the adversarial optimization step.
+                Use the buttons to explore different images.
+              </i></p>
+              <br>
+            </div>
+    
+
+            <!-- <h3 class="title is-4">Guided Prompts</h3>
+
+            <div class="content has-text-justified">
+              <p>
+                
+              </p>
+            </div> -->
+
+            <br>
+
+            <!-- <h3 class="title is-4 gap-text">Guided Adversarial Prompts</h3>
+
+            <div class="content has-text-justified">
+              <p>
+                
+              </p>
+            </div> -->
+
+          </div>
+
+          <br>
+
+
+          <h2 class="title is-3" id="visualizations">Visualizations: <span class="ap-text">Adversarial Prompts</span></h2>
+          <!-- <h2 class="title is-4 ap-text has-text-centered">Adversarial Prompts</h2> -->
+          
+          <h2 class="title is-5">Taskonomy Depth Estimation</h2>
+          <div class="content has-text-justified">
+            <p>
+              <span class="ap-text">Adversarial Prompts</span> find new styles that fool a given supervised model. Below, you can explore different adversarial prompts for depth estimation model trained on the Taskonomy dataset.
+            </p>
+          </div>
+
+          <div class="bboxprobing-panel">
+            <div class="columns is-mobile">
+            <div class="column is-1 has-text-centered"></div>
+            <div class="column is-3 has-text-centered">
+              <div id="depth-ap-depth" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-ap/0/label/0.webp"></div>
+              <h2 class="subtitle">Depth Map</h2>
+            </div>
+            <div class="column is-3 has-text-centered">
+              <div id="depth-ap-orig-rgb" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-ap/0/original/0.webp"></div>
+              <h2 class="subtitle">Original RGB</h2>
+            </div>
+            <div class="column is-1 has-text-centered"></div>
+            <div class="column is-3 has-text-centered">
+              <div id="depth-ap-generated" class="ap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-ap/0/generated/0.webp"></div>
+                <h2 class="subtitle">Generated RGB<p class="ap-text"><em>(Adversarial Prompt)</em></p></h2>
+              </div>
+            </div>
+
+            <div class="columns is-centered is-mobile is-vcentered">
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-5 has-text-centered">
+                <input class="slider is-fullwidth is-large is-info has-output" id="depth-ap-slider" step="1" min="0" max="29" value="0" type="range">
+                    
+                <br>
+                <button class="button" id="prev-button" onclick="prevDepthAPImage()">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Prev.</span>
+                </button>
+                <button class="button" id="next-button" onclick="nextDepthAPImage()">
+                <span>Next</span>
+                <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
+                </span>
+                </button>
+              </div>
+              <div class="column is-1 has-text-centered"></div>
+            </div>
+  
+            <p style="text-align:center"><i>
+              Hint: Drag the slider to change the adversarial prompt.
+              Use the buttons to explore different images.
+            </i></p>
+            <br>
+          </div>
+          
+          <br>
+
+          <div class="content has-text-justified">
+            <p>
+              The following vizualization shows adversarial prompts found for a model trained on the <a href="https://wilds.stanford.edu/datasets/#iwildcam">iWildsCam dataset</a>:
+            </p>
+          </div>
+
+          <div class="bboxprobing-panel">
+            <h2 class="title is-4 has-text-centered">iWildsCam</h2>
+            <div class="columns is-mobile">
+            <div class="column is-1 has-text-centered"></div>
+            <div class="column is-3 has-text-centered">
+              <div id="iwildscam" class="rgb-image">
+                <div class="label-container">
+                  <img src="https://storage.googleapis.com/adversarial-prompts/images/white.webp">
+                    <div class="centered-text"><em id="iwildscam-ap-class-name">Cattle</em></div>
+                </div>
+              </div>
+              <h2 class="subtitle">Class</h2>
+            </div>
+            <div class="column is-3 has-text-centered">
+              <div id="iwildscam-ap-orig-rgb" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/iwilds-data/0/original/0.webp"></div>
+              <h2 class="subtitle">Original RGB</h2>
+            </div>
+            <div class="column is-1 has-text-centered"></div>
+            <div class="column is-3 has-text-centered">
+              <div id="iwildscam-ap-generated" class="ap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/iwilds-data/0/generated/0.webp"></div>
+                <h2 class="subtitle">Generated RGB<p class="ap-text"><em>(Adversarial Prompt)</em></p></h2>
+              </div>
+            </div>
+
+            <div class="columns is-centered is-mobile is-vcentered">
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-5 has-text-centered">
+                <input class="slider is-fullwidth is-large is-info has-output" id="iwildscam-ap-slider" step="1" min="0" max="3" value="0" type="range" list="iwildscam-ap-slider-steplist">
+                <datalist id="iwildscam-ap-slider-steplist">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>50</option>
+                    <option>75</option>
+                </datalist>
+                    
+                <br>
+                <button class="button" id="prev-button" onclick="previWildsCamAPImage()">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Prev.</span>
+                </button>
+                <button class="button" id="next-button" onclick="nextiWildsCamAPImage()">
+                <span>Next</span>
+                <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
+                </span>
+                </button>
+              </div>
+              <div class="column is-1 has-text-centered"></div>
+            </div>
+  
+            <p style="text-align:center"><i>
+              Hint: Drag the slider to change the adversarial prompt.
+              Use the buttons to explore different images.
+            </i></p>
+            <br>
+          </div>
+
+          <br>
+
+          <!-- <div class="bboxprobing-panel">
+            <h2 class="title is-4 has-text-centered">Waterbirds</h2>
+            <div class="columns is-mobile">
+            <div class="column is-1 has-text-centered"></div>
+            <div class="column is-3 has-text-centered">
+              <div id="waterbirds-ap-label" class="rgb-image">
+                <div class="label-container">
+                  <img src="https://storage.googleapis.com/adversarial-prompts/images/white.webp"/>
+                    <div class="centered-text"><em id="waterbirds-ap-class-name">Centered</em></div>
+                </div>
+              </div>
+              <h2 class="subtitle">Class</h2>
+            </div>
+            <div class="column is-3 has-text-centered">
+              <div id="waterbirds-ap-orig-rgb" class="rgb-image">
+                <img src="https://storage.googleapis.com/adversarial-prompts/images/loading.jpg"/>
+              </div>
+              <h2 class="subtitle">Original RGB</h2>
+            </div>
+            <div class="column is-1 has-text-centered"></div>
+            <div class="column is-3 has-text-centered">
+              <div id="waterbirds-ap-generated" class="rgb-image">
+                <img src="https://storage.googleapis.com/adversarial-prompts/images/loading.jpg"/>
+                </div>
+                <h2 class="subtitle">Adversarial RGB</h2>
+              </div>
+            </div>
+            
+            <div class="columns is-centered is-mobile is-vcentered">
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-5 has-text-centered">
+                <input class="slider is-fullwidth is-large is-info has-output"
+                      id="waterbirds-ap-slider"
+                      step="1" min="0" max="3" value="0" type="range">
+                <br>
+                <button class="button" id="prev-button" onclick="prevWaterbirdsAPImage()">
+                  <span class="icon">
+                    <i class="fas fa-arrow-left"></i>
+                  </span>
+                  <span>Prev.</span>
+                </button>
+                <button class="button" id="next-button" onclick="nextWaterbirdsAPImage()">
+                <span>Next</span>
+                <span class="icon">
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+                </button>
+              </div>
+              <div class="column is-1 has-text-centered"></div>
+            </div>
+  
+            <p style="text-align:center"><i>
+              Hint: Drag the slider to change the adversarial prompt.
+              Use the buttons to explore different images.
+            </i></p>
+            <br/>
+          </div> -->
+
+          <br>
+
+          <!-- <h2 class="title is-4 gap-text has-text-centered">Guided Adversarial Prompts</h2> -->
+
+          <h2 class="title is-3" id="visualizations">Visualizations: <span class="gap-text">Guided Adversarial Prompts</span></h2>
+
+          <h2 class="title is-5 has-text-centered">Taskonomy Depth Estimation: Different Target Corruptions</h2>
+          <div class="content has-text-justified">
+            <p>
+              Unlike Adversarial Prompts, <span class="gap-text">Guided Adversarial Prompts</span> are informed of the target distribution of interest.
+              Below, you can explore different guided adversarial prompts found for two target <a href="https://github.com/hendrycks/robustness">Common Corruptions</a> domains Fog and Blur.
+              Note how the generated images resemble the target domain.
+            </p>
+          </div>
+
+          <div class="bboxprobing-panel">
+            <div class="columns is-mobile">
+              <div class="column is-3 has-text-centered">
+                <div id="depth-gap-depth" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-gap/0/label/0.webp"></div>
+                <h2 class="subtitle">Depth Map</h2>
+              </div>
+              <div class="column is-3 has-text-centered">
+                <div id="depth-gap-orig-rgb" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-gap/0/original/0.webp"></div>
+                <h2 class="subtitle">Original RGB</h2>
+              </div>
+              <!-- <div class="column is-1 has-text-centered"></div> -->
+              <div class="column is-3 has-text-centered">
+              <div id="depth-gap-generated-1" class="gap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-gap/0/generated_gap1/0.webp"></div>
+                <h2 class="subtitle has-text-centered"><p>Generated RGB</p><p class="gap-text" style="padding-bottom: 10px;"><em>(Guided Adv. Prompt)</em></p> Target: <b>CC Fog</b>
+                </h2>
+              </div>
+              <div class="column is-3 has-text-centered">
+                <div id="depth-gap-generated-2" class="gap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-gap/0/generated_gap2/0.webp"></div>
+                <h2 class="subtitle has-text-centered"><p>Generated RGB</p><p class="gap-text" style="padding-bottom: 10px;"><em>(Guided Adv. Prompt)</em></p> Target: <b>CC Blur</b>
+                </h2>
+              </div>
+            </div>
+
+            <div class="columns is-centered is-mobile is-vcentered">
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-5 has-text-centered">
+                <input class="slider is-fullwidth is-large is-info has-output" id="depth-gap-slider" step="1" min="0" max="2" value="0" type="range">
+                    
+                <br>
+                <button class="button" id="prev-button" onclick="prevDepthGAPImage()">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Prev.</span>
+                </button>
+                <button class="button" id="next-button" onclick="nextDepthGAPImage()">
+                <span>Next</span>
+                <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
+                </span>
+                </button>
+              </div>
+              <div class="column is-1 has-text-centered"></div>
+            </div>
+  
+            <p style="text-align:center"><i>
+              Hint: Drag the slider to change the adversarial prompt.
+              Use the buttons to explore different images.
+            </i></p>
+            <br>
+          </div>
+
+          <br>
+
+          <h2 class="title is-5 has-text-centered">iWilds: Different Camera Deployments</h2>
+          <div class="content has-text-justified">
+            <p>
+              Unlike Adversarial Prompts, <span class="gap-text">Guided Adversarial Prompts</span> are informed of the target distribution of interest.
+              Below, you can explore different guided adversarial prompts found for two target <a href="https://github.com/hendrycks/robustness">Common Corruptions</a> domains Fog and Blur.
+              Note how the generated images resemble the target domain.
+            </p>
+          </div>
+
+          <div class="bboxprobing-panel">
+            <div class="columns is-mobile">
+              <div class="column is-3 has-text-centered">
+                <div id="iwilds-gap-depth" class="rgb-image">
+                    <div class="label-container">
+                      <img src="https://storage.googleapis.com/adversarial-prompts/images/white.webp">
+                        <div class="centered-text"><em id="iwilds-gap-class-name">Cattle</em></div>
+                    </div>
+                    </div>
+                <h2 class="subtitle">Class</h2>
+              </div>
+              <div class="column is-3 has-text-centered">
+                <div id="iwilds-gap-orig-rgb" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/iwilds-data-gap/location_287_day/0/original/0.webp"></div>
+                <h2 class="subtitle">Original RGB</h2>
+              </div>
+              <!-- <div class="column is-1 has-text-centered"></div> -->
+              <div class="column is-3 has-text-centered">
+              <div id="iwilds-gap-generated-1" class="gap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/iwilds-data-gap/location_287_day/0/generated/0.webp"></div>
+                  <h2 class="subtitle has-text-centered">
+                    <p>Generated RGB</p>
+                    <p class="gap-text" style="padding-bottom: 10px;"><em>(Guided Adv. Prompt)</em></p>
+                    <p>Target: <b>Deployment 1</b></p>
+                    <p><em>(grassy field)</em></p>
+                  </h2>
+              </div>
+              <div class="column is-3 has-text-centered">
+              <div id="iwilds-gap-generated-2" class="gap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/iwilds-data-gap/location_288_night/0/generated/0.webp"></div>
+                <h2 class="subtitle has-text-centered">
+                  <p>Generated RGB</p>
+                  <p class="gap-text" style="padding-bottom: 10px;"><em>(Guided Adv. Prompt)</em></p>
+                  <p>Target: <b>Deployment 2</b></p>
+                  <p><em>(night time)</em></p>
+              </h2>
+              </div>
+            </div>
+
+            <div class="columns is-centered is-mobile is-vcentered">
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-5 has-text-centered">
+                <button class="button" id="prev-button" onclick="previWildsGAPImage()">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Prev.</span>
+                </button>
+                <button class="button" id="next-button" onclick="nextiWildsGAPImage()">
+                <span>Next</span>
+                <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
+                </span>
+                </button>
+              </div>
+              <div class="column is-1 has-text-centered"></div>
+            </div>
+  
+            <p style="text-align:center"><i>
+              Hint: Use the buttons to explore different images.
+            </i></p>
+            <br>
+          </div>
+
+          <br>
+
+          <h2 class="title is-5 has-text-centered">Waterbirds: Avoiding Spurious Correlation</h2>
+          <div class="content has-text-justified">
+            <p>
+              In the following example, we find guided adversarial prompts for a model trained on the <a href="https://github.com/kohpangwei/group_DRO#waterbirds">Waterbirds dataset</a>.
+              Unlike the previous example, the target domain is the same as the training domain.
+              The training domain has a spurious correlation: the waterbirds are on water and landbirds are on land.
+              <em>Note how the guided adversarial prompts tend to generate images missing in the original data, i.e. with the opposite correlation: waterbirds on land and landbirds on water.</em>
+              Training the model on these images allows to avoid the spurious correlation, see <a href="#results-waterbirds">quantitative results below</a>.
+            </p>
+          </div>
+
+
+          <div class="bboxprobing-panel">
+            <div class="columns is-mobile">
+            <div class="column is-6 has-text-centered">
+              <h1 class="title is-6"><em>Class: Waterbird</em></h1>
+            </div>
+            <div class="column is-6 has-text-centered">
+              <h1 class="title is-6"><em>Class: Landbird</em></h1>
+            </div>
+            </div>
+            <div class="columns is-mobile">
+              <div class="column is-3 has-text-centered">
+                <div id="waterbirds-gap-waterbird" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/waterbirds-data/waterbirds-gap-waterbird/0/original/0.webp"></div>
+                <h2 class="subtitle">Original RGB <p style="color: gray;"><em>(waterbird on water)</em></p></h2>
+              </div>
+              <div class="column is-3 has-text-centered">
+                <div id="waterbirds-gap-waterbird-generated" class="gap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/waterbirds-data/waterbirds-gap-waterbird/0/generated/0.webp"></div>
+                <h2 class="subtitle">Generated RGB<p class="gap-text"><em>(Guided Adv. Prompt)</em></p></h2>
+              </div>
+              <!-- <div class="column is-1 has-text-centered"></div> -->
+              <div class="column is-3 has-text-centered">
+              <div id="waterbirds-gap-landbird" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/waterbirds-data/waterbirds-gap-landbird/0/original/0.webp"></div>
+                <h2 class="subtitle">Original RGB <p style="color: gray;"><em>(landbird on land)</em></p></h2>
+                
+              </div>
+              <div class="column is-3 has-text-centered">
+              <div id="waterbirds-gap-landbird-generated" class="gap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/waterbirds-data/waterbirds-gap-landbird/0/generated/0.webp"></div>
+                <h2 class="subtitle has-text-centered">Generated RGB<p class="gap-text"><em>(Guided Adv. Prompt)</em></p></h2>
+              </div>
+            </div>
+
+            <div class="columns is-mobile is-vcentered">
+              <!-- <div class="column is-1 has-text-centered"></div> -->
+              <div class="column is-1 has-text-centered"></div>
+              <div class="column is-4 has-text-centered">
+                <input class="slider is-fullwidth is-large is-info has-output" id="waterbirds-gap-waterbird-slider" step="1" min="0" max="3" value="0" type="range">
+                    
+                <br>
+                <button class="button" id="prev-button" onclick="prevWaterbirdGAPWaterbirdImage()">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Prev.</span>
+                </button>
+                <button class="button" id="next-button" onclick="nextWaterbirdGAPWaterbirdImage()">
+                <span>Next</span>
+                <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
+                </span>
+                </button>
+              </div>
+              <div class="column is-2 has-text-centered"></div>
+              <div class="column is-4 has-text-centered">
+                <input class="slider is-fullwidth is-large is-info has-output" id="waterbirds-gap-landbird-slider" step="1" min="0" max="3" value="0" type="range">
+                    
+                <br>
+                <button class="button" id="prev-button" onclick="prevWaterbirdGAPLandbirdImage()">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>Prev.</span>
+                </button>
+                <button class="button" id="next-button" onclick="nextWaterbirdGAPLandbirdImage()">
+                <span>Next</span>
+                <span class="icon">
+                    <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
+                </span>
+                </button>
+              </div>
+            </div>
+  
+            <p style="text-align:center"><i>
+              Hint: Drag the slider to change the guided adversarial prompt.
+              Use the buttons to explore different images.
+            </i></p>
+            <br>
+          </div>
+  
+          <div>
+            <div class="content has-text-justified">
+              <p>
+              </p>
+            </div>
+            
+          </div>
+
+          <br>
+
+
+          <h2 class="title is-3" id="results">Results</h2>
+
+            <div class="content has-text-justified">
+              
+              We will now show the quantiative results from fine-tuning on data generated from <span class="ap-text">Adversarial Prompts</span> and <span class="gap-text">Guided Adversarial Prompts</span>. 
+              For each dataset and task, we compare the following methods: <br> 
+              <p style="margin-left:20px;">
+                <em>Control (No Extra Data)</em>: 
+                This fine-tunes the model on the original training data. This baseline is to ensure that the difference in performance is due to the generated data, rather than e.g., longer training or optimization hyperparameters <br>
+                <em>Agnostic Prompts</em>: 
+                <!-- We generate data with a prompt that is not informed of the model or the target distribution. -->
+                We generate data with the prompt "nature" for Waterbirds, “a camera trap photo of {<em>class name</em>}” for iWildCam and "room" for Taskonomy.<br>
+                <em><span class="gp-text">Guided Prompts</span></em>: 
+                These prompts are only informed of the target distribution. 
+                For the classification task, we use the prompts from ALIA <a href="https://arxiv.org/abs/2305.16289">(Dunlap L. et al.)</a>. 
+                For the depth task, we optimize for prompts using only the CLIP guidance loss.
+                <!-- this approach uses a captioning and language model to summarize a target distribution shift into a text prompt.  -->
+                <!-- Specifically, we use the prompts from ALIA <a href="https://arxiv.org/abs/2305.16289">(Dunlap L. et al.)</a>.  -->
+                <!-- This results in seven prompts for Waterbirds and four prompts for iWildCam. -->
+              </p>
+              <!-- <em><span class="gp-text">Guided Prompts</span></em>: This approach uses a cap- tioning and language model to summarize a target distri- bution shift into a text prompt.  -->
+              <!-- Specifically, we use the prompts found by the ALIA method. This results in seven prompts for Waterbirds and four prompts for iWildCam. -->
+              
+            </div>
+
+          <h3 class="title is-4">Depth</h3>
+         
+          <div class="columns is-centered is-vcentered">
+            <div class="column is-6 has-text-justified">
+              <p>
+                <b>Quantitative results on depth estimation.</b>  The table below shows the results on distribution shifts from <a href="https://github.com/hendrycks/robustness">Common Corruptions</a> (CC), <a href="https://github.com/EPFL-VILAB/3DCommonCorruptions">3D Common Corruptions</a> (3DCC) and <a href="https://github.com/facebookresearch/Replica-Dataset">Replica</a>,
+                from the U-Net and DPT model. 
+                The results from CC and 3DCC are averaged over all distortions and severity levels. 
+                The models were trained with different losses, <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 118.3%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c2113"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ℓ</mi><mn>1</mn></msub></math></mjx-assistive-mml></mjx-container> for the former and Midas loss for the later, thus their performance is not comparable.
+                Our method is able to generate training data that can improve results over the baselines on several distribution shifts. 
+                Finetuning on generated data from <span class="ap-text">Adversarial Prompts</span> with SDEdit gives better results than <span class="ap-text">Adversarial Prompts</span> under distribution shifts. 
+                Thus, also conditioning on the original image seems to be helpful for these shifts. 
+                For the DPT model, the trends are similar, <span class="ap-text">Adversarial Prompts</span> performs better than the baselines. 
+              </p>
+            </div>
+            <!-- <div class="column is-0.1"></div> -->
+            <div class="column is-6 has-text-justified">
+                <style type="text/css">
+                  .tg  {border-collapse:collapse;border-spacing:0;}
+                  .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                    overflow:hidden;padding:10px 5px;word-break:normal;}
+                  .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                    font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                  .tg .tg-yj5y{background-color:#efefef;border-color:inherit;text-align:center;vertical-align:top;font-weight:bold;}
+                  .tg .tg-y698{background-color:#efefef;border-color:inherit;text-align:left;vertical-align:top;font-weight:bold;}
+                  .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+                </style>
+                  <div class="tg-wrap"><table class="tg">
+                  <tbody>
+                    <tr>
+                      <td class="tg-y698"></td>
+                      <td class="tg-yj5y" colspan="4">U-Net</td>
+                      <td class="tg-yj5y" colspan="2">DPT</td>
+                    </tr>
+                    <tr>
+                      <td class="tg-y698"></td>
+                      <td class="tg-yj5y" colspan="3">Taskonomy</td>
+                      <td class="tg-y698">Replica</td>
+                      <td class="tg-yj5y" colspan="2">Taskonomy</td>
+                    </tr>
+                    <tr>
+                      <td class="tg-y698">Shift</td>
+                      <td class="tg-y698">Clean</td>
+                      <td class="tg-y698">CC</td>
+                      <td class="tg-y698">3DCC</td>
+                      <td class="tg-y698">CDS</td>
+                      <td class="tg-y698">CC</td>
+                      <td class="tg-y698">3DCC</td>
+                    </tr>
+                    <tr>
+                      <td class="tg-0pky">Control (No extra data)</td>
+                      <td class="tg-0pky">2.35</td>
+                      <td class="tg-0pky">4.93</td>
+                      <td class="tg-0pky">4.79</td>
+                      <td class="tg-0pky">5.38</td>
+                      <td class="tg-0pky">3.76</td>
+                      <td class="tg-0pky">3.42</td>
+                    </tr>
+                    <tr>
+                      <td class="tg-0pky">Agnostic Prompts</td>
+                      <td class="tg-0pky">2.47</td>
+                      <td class="tg-0pky">5.03</td>
+                      <td class="tg-0pky">4.17</td>
+                      <td class="tg-0pky">5.30</td>
+                      <td class="tg-0pky">4.06</td>
+                      <td class="tg-0pky">3.58</td>
+                    </tr>
+                    <tr>
+                      <td class="tg-0pky">Agnostic Prompts (Random)</td>
+                      <td class="tg-0pky">2.38</td>
+                      <td class="tg-0pky">4.96</td>
+                      <td class="tg-0pky">4.11</td>
+                      <td class="tg-0pky">5.14</td>
+                      <td class="tg-0pky">3.88</td>
+                      <td class="tg-0pky">3.51</td>
+                    </tr>
+                    <tr>
+                      <td class="tg-0pky"><span class="ap-text">Adversarial Prompts</span></td>
+                      <td class="tg-0pky">2.49</td>
+                      <td class="tg-0pky">4.36</td>
+                      <td class="tg-0pky">4.02</td>
+                      <td class="tg-0pky">5.12</td>
+                      <td class="tg-0pky">3.40</td>
+                      <td class="tg-0pky">3.28</td>
+                    </tr>
+                    <tr>
+                      <td class="tg-0pky"><span class="ap-text">Adversarial Prompts</span> (SDEdit)</td>
+                      <td class="tg-0pky">2.59</td>
+                      <td class="tg-0pky">4.20</td>
+                      <td class="tg-0pky">3.88</td>
+                      <td class="tg-0pky">4.96</td>
+                      <td class="tg-0pky">3.35</td>
+                      <td class="tg-0pky">3.25</td>
+                    </tr>
+                  </tbody>
+                  </table></div>
+                  <p class="has-text-justified gray">
+                    <em style="color: gray;">
+                      Errors on the depth prediction task for a pre-trained U-Net and DPT model. 
+                      U-Net losses are multiplied by 100 and DPT losses by 10 for readability. 
+                      <!-- These models were trained with different losses, \(\ell_1\) for the former and Midas loss for the later, thus their performance is not comparable. -->
+                    </em>
+                  </p>
+              <p></p>
+            </div>
+
+          </div>
+
+          <div class="columns is-centered is-vcentered">
+            <div class="column is-6 has-text-justified">
+              <p>
+                <b>Performance of <span class="gap-text">Guided Adversarial Prompts</span> against amount of generated data.</b> 
+                The figure on the right shows the performance of our method on the defocus blur distribution shift over the amount of generated data added. 
+                Using <span class="gp-text">Guided Prompts</span> or <span class="gap-text">Guided Adversarial Prompts</span> results in a large improvement in performance, 
+                compared to <span class="ap-text">Adversarial Prompts</span> or the baseline with as little as 10 extra data points. 
+                This suggests that the guidance loss successfully guided the generations towards producing training data relevant to the distribution shift.
+              </p>
+            </div>
+            <div class="column is-1"></div>
+            <div class="column is-5 has-text-centered">
+              <img src="https://storage.googleapis.com/adversarial-prompts/images/depth-quant-blur.png" alt="Agreement Score" class="img-center">
+              <p class="has-text-justified gray">
+                <em style="color: gray;">
+                  x-axis: the amount of extra data generated.
+                  y-axis: <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 118.3%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c2113"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>ℓ</mi><mn>1</mn></msub></math></mjx-assistive-mml></mjx-container> errors <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="2" style="font-size: 118.3%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mo>×</mo><mn>100</mn><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container> under defocus blur corruption applied on the Taskonomy test set.
+                </em>
+              </p>
+            </div>
+          </div>
+
+
+
+
+          <h3 class="title is-4" id="results-waterbirds">Waterbirds: Avoiding Spurious Correlation</h3>
+
+          <div class="columns is-centered is-vcentered">
+            <div class="column is-6 has-text-justified">
+              <p>
+                <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
+                <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
+                <b><span class="gap-text">Guided Adversarial Prompts</span> improve the data-efficiency over other methods</b>.
+                We observe that having a guidance mechanism towards the target image distribution consistently improves on top of the <span class="agnostic-text">Agnostic Prompts</span> baseline (<em>''nature''</em> prompt).
+                <span class="ap-text">Adversarial Prompts</span> while fooling the model, generates images that are not necessary relevant to the target distribution and, thus, not useful to adapt the model to it.
+                Combining both mechanisms in <span class="gap-text">Guided Adversarial Prompts</span> leads to <em>improved data efficiency</em>.
+                Unlike <span class="gp-text">Guided Prompts</span> that uses the same prompts to generate images for both classes, <span class="gap-text">GAP</span> finds prompts that generate images the model fails on, this leads to generation of waterbirds on land and landbirds on water, the combinations not present in the original training data, which are necessary data samples for the model to learn the bird predictive feature.
+              </p>
+            </div>
+            <div class="column is-1"></div>
+            <div class="column is-5 has-text-centered">
+              <img src="https://storage.googleapis.com/adversarial-prompts/images/waterbirds_quant.png" alt="Agreement Score" class="img-center">
+              <p class="has-text-justified gray">
+                <em style="color: gray;">
+                  x-axis: the amount of extra data generated.
+                  y-axis: the accuracy on the balanced test set (both waterbirds and landbirds on both land and water).
+                </em>
+              </p>
+            </div>
+          </div>
+
+
+          <h3 class="title is-4" id="results-iwilds">iWildCam: Generalizing to new camera trap deployments</h3>
+
+          <div class="columns is-centered is-vcentered">
+            <div class="column is-6 has-text-justified">
+              <p>
+                <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
+                <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
+                <span class="gap-text">Guided Adversarial Prompts</span> combines the benefits of both model- and target-informed feedback mechanisms, consistently outperforming other methods.
+                Additionally, model-informed feedback (<span class="ap-text">Adversarial Prompts</span>) improves the performance of a target-only informed (<span class="gp-text">Guided Prompts</span>) in the low-data regime.
+
+
+
+              </p>
+            </div>
+            <div class="column is-1"></div>
+            <div class="column is-5 has-text-centered">
+              <img src="https://storage.googleapis.com/adversarial-prompts/images/iwild_quant.png" alt="Agreement Score" class="img-center">
+              <p class="has-text-justified gray">
+                <em style="color: gray;">
+                  x-axis: the amount of extra data generated.
+                  y-axis: average accuracy on 2 test camera trap locations.
+                </em>
+              </p>
+            </div>
+          </div>
+
+          <h3 class="title is-4" id="results-iwilds">Additional results and analysis</h3>
+          
+          <div class="content has-text-justified">  
+            We also have additional results on the following: <br>
+            <p style="margin-left:20px;">
+              <span>•</span> We performed <em>multiple iterations</em> of adversarial optimization → generation → fine-tuning, 
+              and show that using a single iteration is sufficient (see Sec. 4.2.1). <br>
+              <span>•</span> Results from performing adversarial optimization on different supervised models on the same task (see sup. mat. Sec 3.3 for qualitative results).<br>
+              <span>•</span> A visual and quantitative comparison of the generations from text and image guidance (see sup. mat. Sec 3.4.2).
+            </p>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  
+
+
+
+
+
+
 <!-- Image carousel -->
 <section class="hero is-small">
   <div class="hero-body">
