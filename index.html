@@ -376,52 +376,6 @@
           </div>
 
           <br>
-
-
-          <h2 class="title is-3" id="visualizations">Visualizations: <span class="ap-text">Weather Forecasting</span></h2>
-          <!-- <h2 class="title is-4 ap-text has-text-centered">Adversarial Prompts</h2> -->
-          
-          <h2 class="title is-5">Global Forecasting</h2>
-          <div class="content has-text-justified">
-            <p>
-              Below are the global prediction videos for various metrological variables predicted by ClimODE.  
-            </p>
-
-          <section class="hero is-small">
-            <div class="hero-body">
-              <div class="container">
-                <h2 class="title is-3">Ablations and Interpretability</h2>
-                <div id="results-carousel" class="carousel results-carousel">
-                 <div class="item">
-                  <!-- Your image here -->
-                  <img src="static/images/mean_std_tp_v1.png" alt="MY ALT TEXT"/>
-                  <h2 class="subtitle has-text-centered">
-                  <b> Effect of Emission Model </b>: Explainable bias (day-night cycle) and uncertainty quantification
-                 </h2>
-               </div>
-          
-                <div class="item">
-                  <!-- Your image here -->
-                  <img src="static/images/mass_conv.png" alt="MY ALT TEXT"/>
-                  <h2 class="subtitle has-text-centered">
-                    <b> Mass conservation </b>: Validity of the mass conservation assumption of the advection ODE.
-                  </h2>
-                </div>
-                  
-                <div class="item">
-                  <!-- Your image here -->
-                  <img src="static/images/ablation_final_v2.png" alt="MY ALT TEXT"/>
-                  <h2 class="subtitle has-text-centered">
-                    <b> Individual Components </b>: Importance of individual model components
-                  </h2>
-                </div>
-            </div>
-          </div>
-          </div>
-          </section>
-
-        
-            
         
           <h2 class="title is-3" id="results">Results</h2>
 
@@ -526,7 +480,36 @@
 
 
 
-  
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3" id="visualizations" >Visualizations</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%"> 
+            <source src="static/videos/carousel1.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <source src="static/videos/carousel2.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">
+            <source src="static/videos/carousel3.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 
 
@@ -581,100 +564,9 @@
 </section>
 <!-- End youtube video -->
 
-  
-  
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Results</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/global_forecast_updated.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          <b> Global Forecasting </b>: RMSE and ACC comparison with baselines.
-        </h2>
-      </div>
-        
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/crps_average.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          <b> CRPS and Monthly Forecasting </b>: RMSE comparison with baselines for monthly forecasting and CRPS scores for ClimODE. 
-        </h2>
-      </div>
-        
-  </div>
-</div>
-</div>
-</section>
 
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Ablations and Interpretability</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/mean_std_tp_v1.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-        <b> Effect of Emission Model </b>: Explainable bias (day-night cycle) and uncertainty quantification
-       </h2>
-     </div>
 
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/mass_conv.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          <b> Mass conservation </b>: Validity of the mass conservation assumption of the advection ODE.
-        </h2>
-      </div>
-        
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/ablation_final_v2.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          <b> Individual Components </b>: Importance of individual model components
-        </h2>
-      </div>
-  </div>
-</div>
-</div>
-</section>
-
-<!-- Video carousel 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">  -->
-            <!-- Your video file here 
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">-->
-            <!-- Your video file here 
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\-->
-            <!-- Your video file here 
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>-->
-<!-- End video carousel -->
 
 
 
