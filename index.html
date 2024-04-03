@@ -187,6 +187,18 @@
               </p>
             </a>
           </div>
+
+
+          <div class="tile is-parent">
+            <a href="#ablations" class="tile is-child box">
+              <p class="title is-4">Ablations</p>
+              <p>
+                Ablations and Interpretability of Predictions
+              </p>
+            </a>
+          </div>
+
+          
         </div>
 
       </div>
@@ -824,32 +836,23 @@
             </div>
             
           </div>
-          
 
 
-          <h3 class="title is-4" id="results-iwilds">iWildCam: Generalizing to new camera trap deployments</h3>
+         <h2 class="title is-3" id="ablations">Ablations</h2>
+
+          <h3 class="title is-4" id="results-iwilds">Effect of emission model</h3>
 
           <div class="columns is-centered is-vcentered">
             <div class="column is-6 has-text-justified">
               <p>
                 <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
                 <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
-                <span class="gap-text">Guided Adversarial Prompts</span> combines the benefits of both model- and target-informed feedback mechanisms, consistently outperforming other methods.
-                Additionally, model-informed feedback (<span class="ap-text">Adversarial Prompts</span>) improves the performance of a target-only informed (<span class="gp-text">Guided Prompts</span>) in the low-data regime.
-
-
-
+                The plot shows model predictions $u (x,t)$ of ground temperature (\texttt{t2m}) for a specific location while also including emission bias $\mu (x,t)$ and variance $\sigma^2 (x,t)$. Remarkably, the model captures diurnal variations and effectively estimates variance.
               </p>
             </div>
             <div class="column is-1"></div>
             <div class="column is-5 has-text-centered">
-              <img src="https://storage.googleapis.com/adversarial-prompts/images/iwild_quant.png" alt="Agreement Score" class="img-center">
-              <p class="has-text-justified gray">
-                <em style="color: gray;">
-                  x-axis: the amount of extra data generated.
-                  y-axis: average accuracy on 2 test camera trap locations.
-                </em>
-              </p>
+              <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/mean_bias_showcase_final_v3.png" alt="Agreement Score" class="img-center">
             </div>
           </div>
 
@@ -858,10 +861,9 @@
           <div class="content has-text-justified">  
             We also have additional results on the following: <br>
             <p style="margin-left:20px;">
-              <span>•</span> We performed <em>multiple iterations</em> of adversarial optimization → generation → fine-tuning, 
-              and show that using a single iteration is sufficient (see Sec. 4.2.1). <br>
-              <span>•</span> Results from performing adversarial optimization on different supervised models on the same task (see sup. mat. Sec 3.3 for qualitative results).<br>
-              <span>•</span> A visual and quantitative comparison of the generations from text and image guidance (see sup. mat. Sec 3.4.2).
+              <span>•</span> Results for <em>regional forecasting, longer-lead times</em> of various quantities and comparison to baselines <br>
+              <span>•</span> Abaltion to check the mass-conserving property of the ODE-system.<br>
+              <span>•</span> Correlations among the data variables.
             </p>
           </div>
 
