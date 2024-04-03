@@ -387,91 +387,7 @@
               Below are the global prediction videos for various metrological variables predicted by ClimODE.  
             </p>
           </div>
-
-        <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">  -->
-            Your video file here 
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">-->
-            Your video file here 
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\-->
-            Your video file here 
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-            
-
-          <div class="bboxprobing-panel">
-            <div class="columns is-mobile">
-            <div class="column is-1 has-text-centered"></div>
-            <div class="column is-3 has-text-centered">
-              <div id="depth-ap-depth" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-ap/0/label/0.webp"></div>
-              <h2 class="subtitle">Depth Map</h2>
-            </div>
-            <div class="column is-3 has-text-centered">
-              <div id="depth-ap-orig-rgb" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-ap/0/original/0.webp"></div>
-              <h2 class="subtitle">Original RGB</h2>
-            </div>
-            <div class="column is-1 has-text-centered"></div>
-            <div class="column is-3 has-text-centered">
-              <div id="depth-ap-generated" class="ap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/depth-ap/0/generated/0.webp"></div>
-                <h2 class="subtitle">Generated RGB<p class="ap-text"><em>(Adversarial Prompt)</em></p></h2>
-              </div>
-            </div>
-
-            <div class="columns is-centered is-mobile is-vcentered">
-              <div class="column is-1 has-text-centered"></div>
-              <div class="column is-5 has-text-centered">
-                <input class="slider is-fullwidth is-large is-info has-output" id="depth-ap-slider" step="1" min="0" max="29" value="0" type="range">
-                    
-                <br>
-                <button class="button" id="prev-button" onclick="prevDepthAPImage()">
-                  <span class="icon">
-                    <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
-                  </span>
-                  <span>Prev.</span>
-                </button>
-                <button class="button" id="next-button" onclick="nextDepthAPImage()">
-                <span>Next</span>
-                <span class="icon">
-                    <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
-                </span>
-                </button>
-              </div>
-              <div class="column is-1 has-text-centered"></div>
-            </div>
-  
-            <p style="text-align:center"><i>
-              Hint: Drag the slider to change the adversarial prompt.
-              Use the buttons to explore different images.
-            </i></p>
-            <br>
-          </div>
-          
-          <br>
-
-          <div class="content has-text-justified">
-            <p>
-              The following vizualization shows adversarial prompts found for a model trained on the <a href="https://wilds.stanford.edu/datasets/#iwildcam">iWildsCam dataset</a>:
-            </p>
-          </div>
+        
 
           <div class="bboxprobing-panel">
             <h2 class="title is-4 has-text-centered">iWildsCam</h2>
@@ -836,7 +752,7 @@
           <h2 class="title is-3" id="results">Results</h2>
 
             <div class="content has-text-justified">
-              We now show the ClimODE's forecasting capabilities by predicting the future state $\mathbf{u}_{t+\Delta t}$ based on the initial state $\mathbf{u}_t$ for various lead times , focusing on key meteorological variables
+              We now show the ClimODE's forecasting capabilities by predicting the future state based on the initial state  for various lead times, focusing on key meteorological variables
             </div>
 
           <h3 class="title is-4">Global Forecasting</h3>
@@ -877,7 +793,7 @@
               <p>
                 <!-- We train a classification model on the original spuriously correlated dataset with varying number of extra data points generated using different types of prompts. -->
                 <!-- We measure the accuracy on a balanced set where waterbirds and landbirds appear on both land and water. -->
-                The right plot shows model predictions $u(x,t)$ of ground temperature ($\texttt{t2m}$) for a specific location while also including emission bias $\mu$ and variance $\sigma$. Remarkably, the model captures <font color="red"> diurnal variations and effectively estimates variance </font>. 
+                The right plot shows model predictions *u(x,t)* of ground temperature (t2m) for a specific location while also including emission bias and variance . Remarkably, the model captures <font color="red"> diurnal variations and effectively estimates variance </font>. 
               </p>
 
               <p>
