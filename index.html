@@ -268,12 +268,11 @@
             
             <!-- <h3 class="title is-4 ap-text">Adversarial Prompts</h3> -->
             
-            <h2 class="title is-4 has-text-justified">Generating aligned image-label examples</h2>
+            <h2 class="title is-4 has-text-justified">Neural Transport Model</h2>
             <div class="content has-text-justified">
               <p>
-			$$\sqrt{b^2-4ac}$$
-                We need aligned examples for supervised training, where an aligned example is an RGB image and its label. 
-                We employ the follow two approaches.
+		We model weather/climate as a spatiotemporal process <b>u</b>(x,t) = (u<sup>1</sup>(x,t),...,u<sup>K</sup>(x,t)) of K quantities as an advection PDE,
+
                 <!-- We employ the following two approaches to condition the generative model g on the label y and sample-aligned training examples (x ̃, y).  -->
                 <!-- For the depth estimation task, we use the ControlNet model <a href="https://arxiv.org/abs/2302.05543">(Zhang L. et al.)</a> with depth conditioning. We use the depth maps from the training dataset. ControlNet then generates an RGB image conditioned on the given depth map. -->
                 <!-- which extends the conditioning mechanisms of the Stable Diffusion to accept various spatial modalities, e.g., depth, segmentation masks, or edges.  -->
@@ -304,7 +303,7 @@
               </div>
             </div>
 
-            <h2 class="title is-4 has-text-justified">Optimization Trajectory</h2>
+            <h2 class="title is-4 has-text-justified">Flow velocity</h2>
             <div class="content has-text-justified">
               <p>
                 Below we demonstrate how <span class="ap-text">Adversarial Prompts</span> evolve over optimization steps for a model trained on the <a href="https://github.com/StanfordVL/taskonomy">Taskonomy dataset</a> for depth estimation task.
