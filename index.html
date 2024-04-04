@@ -44,6 +44,12 @@
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
 </head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 <body>
 
 
@@ -265,9 +271,7 @@
             <h2 class="title is-4 has-text-justified">Generating aligned image-label examples</h2>
             <div class="content has-text-justified">
               <p>
-                <math>
-	                H(s) = ∫<sub>0</sub><sup>∞</sup> e<sup>-\mathbf{st}</sup> h(t) dt
-                </math>
+			$\sqrt{b^2-4ac}$
                 We need aligned examples for supervised training, where an aligned example is an RGB image and its label. 
                 We employ the follow two approaches.
                 <!-- We employ the following two approaches to condition the generative model g on the label y and sample-aligned training examples (x ̃, y).  -->
