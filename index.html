@@ -283,26 +283,6 @@
               </p>
             </div>
 
-            <div class="columns is-centered is-vcentered">
-              <div class="column is-5 has-text-centered">
-                <img src="https://storage.googleapis.com/adversarial-prompts/images/aligned-depth.png" alt="Agreement Score" class="img-center">
-                <p class="has-text-justified gray">
-                  <em style="color: gray;">
-                    For the depth estimation task, we use the ControlNet model <a href="https://arxiv.org/abs/2302.05543">(Zhang L. et al.)</a> with depth conditioning. We use the depth maps from the training dataset. ControlNet then generates an RGB image conditioned on the given depth map.
-                  </em>
-                </p>
-              </div>
-              <div class="column is-1"></div>
-              <div class="column is-5 has-text-centered">
-                <img src="https://storage.googleapis.com/adversarial-prompts/images/aligned-classification.png" alt="Agreement Score" class="img-center">
-                <p class="has-text-justified gray">
-                  <em style="color: gray;">
-                    For semantic classification tasks, we utilize the foreground object masks and use an in-painting technique proposed by <a href="https://arxiv.org/abs/2201.09865">Lugmayr A. et al.</a> that preserves the masked region throughout the denoising process, essentially keeping it intact. 
-                  </em>
-                </p>
-              </div>
-            </div>
-
             <h2 class="title is-4 has-text-justified">Flow velocity</h2>
             <div class="content has-text-justified">
               <p>
@@ -310,7 +290,7 @@
 
 		      <center> v = f<sub><span>&theta;</span></sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>) </center> <br>
 		
-		To capture local and global effects pertaining to weather (or climate), we propose a hybrid network as,
+		To capture local and global effects pertaining to weather (or climate), we propose a hybrid network as,<br>
 		      
 		      <center> f<sub><span>&theta;</span></sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>) = f<sub>conv</sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>) + f<sub>att</sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>)</center> <br>
 		      
