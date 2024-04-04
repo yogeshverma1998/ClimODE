@@ -271,7 +271,7 @@
             <h2 class="title is-4 has-text-justified">Neural Transport Model</h2>
             <div class="content has-text-justified">
               <p>
-		We model weather/climate as a spatiotemporal process <b>u</b>(x,t) = (u<sup>1</sup>(x,t),...,u<sup>K</sup>(x,t)) of K quantities as an advection PDE,
+		We model weather/climate as a spatiotemporal process <b>u</b>(x,t) = (u<sub>1</sub>(x,t),...,u<sub>K</sub>(x,t)) of K quantities as an advection PDE,
 
                 <!-- We employ the following two approaches to condition the generative model g on the label y and sample-aligned training examples (x ̃, y).  -->
                 <!-- For the depth estimation task, we use the ControlNet model <a href="https://arxiv.org/abs/2302.05543">(Zhang L. et al.)</a> with depth conditioning. We use the depth maps from the training dataset. ControlNet then generates an RGB image conditioned on the given depth map. -->
@@ -306,9 +306,7 @@
             <h2 class="title is-4 has-text-justified">Flow velocity</h2>
             <div class="content has-text-justified">
               <p>
-                Below we demonstrate how <span class="ap-text">Adversarial Prompts</span> evolve over optimization steps for a model trained on the <a href="https://github.com/StanfordVL/taskonomy">Taskonomy dataset</a> for depth estimation task.
-                Note how further optimization steps destroy some of the details resulting in generations less faithful to the depth map.
-                To avoid training on such examples, we apply early stopping and SDEdit <a href="https://arxiv.org/abs/2108.01073">(Meng C. et al.)</a> image-to-image conditioning to generate training examples that are more faithful to the original label (see the paper for more details).
+                We model the flow velocity by parametrising it as a function of <b>u</b>(t)= {<b>u</b>(x,t) : x <span>&#8712;</span>  <span>&Omega;</span>  }, spatial gradients <span>&#8711;</span> <b>u</b>(t), current velocity <b>v</b>(t)￼ and spatiotemporal embeddings ￼ 
               </p>
             </div>
 
