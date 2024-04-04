@@ -226,30 +226,11 @@
       <!-- Visual Effects. -->
       <div class="column is-full-width">
           <h2 class="title is-3" id="method-overview">Method Overview</h2>
-
-          <div class="hero-body">
-            <div class="field has-addons is-pulled-right" id="play-controls" title="Hint: Right click the video and choose 'Show All Controls' to enable more fine-grained video controls.">
-              <p class="control">
-                <button class="button is-small is-rounded" onclick="playPauseVideo('method')">
-                  <span class="icon is-small">
-                    &nbsp;<svg class="svg-inline--fa fa-play fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg><!-- <i class="fa fa-play"></i> Font Awesome fontawesome.com -->&nbsp;<svg class="svg-inline--fa fa-pause fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="pause" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path></svg><!-- <i class="fa fa-pause"></i> Font Awesome fontawesome.com -->&nbsp;
-                  </span>
-                </button>
-              </p>
-              <p class="control">
-                <button class="button is-small is-rounded" onclick="restartVideo('method')">
-                  <span class="icon is-small">
-                    <svg class="svg-inline--fa fa-redo fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z"></path></svg><!-- <i class="fas fa-redo"></i> Font Awesome fontawesome.com -->
-                  </span>
-                  <span>Restart animation</span>
-                </button>
-              </p>
-            </div>
-          </div>
+	      
           <div class="hero-body has-text-centered">
-            <video id="method" height="100%" width="80%" preload="metadata" title="Hint: Right click the video and choose 'Show All Controls' to enable more fine-grained video controls.">
-              <source src="https://storage.googleapis.com/adversarial-prompts/images/diff-dataset-method.mp4#t=0.1" type="video/mp4">
-            </video>
+            <p align="center">
+                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/workflow_final_climate_v6.png" />
+        	</p>
             <h3 class="subtitle has-text-justified">
               <b>Our method consists of two feedback mechanisms.</b>
               Our first model-aware feedback mechanism finds <span class="ap-text">Adversarial Prompts</span> that produce training exampples by maximizing the supervised loss.
