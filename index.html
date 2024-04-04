@@ -311,57 +311,17 @@
 		      <center> v = f<sub><span>&theta;</span></sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>) </center> <br>
 		
 		To capture local and global effects pertaining to weather (or climate), we propose a hybrid network as,
+		      
 		      <center> f<sub><span>&theta;</span></sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>) = f<sub>conv</sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>) + f<sub>att</sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>)</center> <br>
-		
+		      
+		<p align="center">
+                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/Group.jpg" />
+              	</p>
+		    
               </p>
             </div>
 
 
-            <div class="bboxprobing-panel">
-              <div class="columns is-mobile">
-              <div class="column is-1 has-text-centered"></div>
-              <div class="column is-3 has-text-centered">
-                <div id="depth-iter-depth" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/gen-vs-iter/0/label/0.webp"></div>
-                <h2 class="subtitle">Depth Map</h2>
-              </div>
-              <div class="column is-3 has-text-centered">
-                <div id="depth-iter-orig-rgb" class="rgb-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/gen-vs-iter/0/original/0.webp"></div>
-                <h2 class="subtitle">Original RGB</h2>
-              </div>
-              <div class="column is-1 has-text-centered"></div>
-              <div class="column is-3 has-text-centered">
-                <div id="depth-iter-generated" class="ap-image"><img src="https://storage.googleapis.com/adversarial-prompts/images/depth-data/gen-vs-iter/0/generated/0.webp"></div>
-                  <h2 class="subtitle">Generated RGB<p class="ap-text"><em>(Adversarial Prompt)</em></p></h2>
-                </div>
-              </div>
-  
-              <div class="columns is-centered is-mobile is-vcentered">
-                <!-- <div class="column is-1 has-text-centered"></div> -->
-                <div class="column is-6 has-text-centered">
-                  <input class="slider is-fullwidth is-large is-info has-output" id="depth-iter-slider" step="1" min="0" max="24" value="0" type="range">
-                      
-                  <br>
-                  <button class="button" id="prev-button" onclick="prevDepthIterImage()">
-                    <span class="icon">
-                      <svg class="svg-inline--fa fa-arrow-left fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg><!-- <i class="fas fa-arrow-left"></i> Font Awesome fontawesome.com -->
-                    </span>
-                    <span>Prev.</span>
-                  </button>
-                  <button class="button" id="next-button" onclick="nextDepthIterImage()">
-                  <span>Next</span>
-                  <span class="icon">
-                      <svg class="svg-inline--fa fa-arrow-right fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg><!-- <i class="fas fa-arrow-right"></i> Font Awesome fontawesome.com -->
-                  </span>
-                  </button>
-                </div>
-                <!-- <div class="column is-1 has-text-centered"></div> -->
-              </div>
-    
-              <p style="text-align:center"><i>
-                Hint: Drag the slider to change the adversarial optimization step.
-                Use the buttons to explore different images.
-              </i></p>
-              <br>
             </div>
     
 
