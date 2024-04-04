@@ -252,7 +252,14 @@
             <h2 class="title is-4 has-text-justified">Neural Transport Model</h2>
             <div class="content has-text-justified">
               <p>
-		We model weather/climate as a spatiotemporal process <b>u</b>(x,t) = (u<sub>1</sub>(x,t),...,u<sub>K</sub>(x,t)) of K quantities as an advection PDE,
+		We model weather/climate as a spatiotemporal process <b>u</b>(x,t) = (u<sub>1</sub>(x,t),...,u<sub>K</sub>(x,t)) of K quantities as an advection PDE,<br>
+
+		      <center> v = f<sub><span>&theta;</span></sub>(<b>u</b>(t),<span>&#8711;</span> <b>u</b>(t), <b>v</b>(t),<span>&psi;</span>) </center> <br>
+
+		      
+		<p align="center">
+                  <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/fig1_v2_final.pngg" />
+              	</p>
 
                 <!-- We employ the following two approaches to condition the generative model g on the label y and sample-aligned training examples (x ̃, y).  -->
                 <!-- For the depth estimation task, we use the ControlNet model <a href="https://arxiv.org/abs/2302.05543">(Zhang L. et al.)</a> with depth conditioning. We use the depth maps from the training dataset. ControlNet then generates an RGB image conditioned on the given depth map. -->
