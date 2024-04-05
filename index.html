@@ -232,11 +232,8 @@
                   <img src="https://raw.githubusercontent.com/yogeshverma1998/ClimODE/master/static/images/workflow_final_climate_v6.png" />
         	</p>
             <h3 class="subtitle has-text-justified">
-              <b>Our method consists of two feedback mechanisms.</b>
-              Our first model-aware feedback mechanism finds <span class="ap-text">Adversarial Prompts</span> that produce training exampples by maximizing the supervised loss.
-              Our second target distribution-aware feedback mechanism finds prompts that produce training examples similar to a target distribution.
-              We use CLIP to measure the similarity between the generated images and the target distribution.
-              Combining these two feedback mechanisms results in <span class="gap-text">Guided Adversarial Prompts</span>.
+              <b>Our method whole pipeline.</b>
+              Based on initial velocity estimates, the advection ODE component serves as the foundational backbone of the model, projecting future predictions. These projections are subsequently forwarded to the emission model, further refining them by estimating bias and uncertainty, ultimately yielding the final predictions.
             </h3>
 
           </div>
